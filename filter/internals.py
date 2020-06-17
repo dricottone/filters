@@ -70,6 +70,10 @@ def _print_help() -> None:
     _msg = "Usage: filter -m=METHOD DATA\n"
     sys.stdout.write(_msg)
 
+def _print_version() -> None:
+    _msg = "gap 1.0.0\n"
+    sys.stdout.write(_msg)
+
 def _print_usage() -> None:
     _msg = "Usage: filter -m=METHOD DATA\n"
     sys.stderr.write(_msg)

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import sys
-import importlib
 
 from . import cli
 from . import internals
@@ -9,11 +8,7 @@ from . import internals
 def main():
     _config, _positionals = cli.main(sys.argv[1:])
 
-    _help = "help" in _config.keys()
     _method = _config.get("method", "")
-    _files = _config.get("file", [])
-    _files.extend(_positionals)
-
     _data = {
         "alpha": internals._try_get_float(_config, "alpha"),
         "beta": internals._try_get_float(_config, "beta"),
@@ -24,6 +19,10 @@ def main():
         "time": internals._try_get_float(_config, "time"),
     }
 
+    if "version" in _config.keys():
+        internals._print_version()
+        sys.exit(0)
+
     if _method == "ab":
         from . import ab as implementation
     elif len(_method) > 0:
@@ -32,22 +31,23 @@ def main():
         internals._print_usage()
         sys.exit(1)
 
-    if _help and len(_method) == 0:
+    if "help" in _config.keys() and "method" not in _config.keys():
         # requesting help
         internals._print_help()
         sys.exit(0)
-    elif _help:
+    elif "help" in _config.keys():
         # requesting help with a methodology
-        sys.stdout.print(implementation.__doc__)
+        sys.stdout.write(implementation.__doc__)
         sys.exit(0)
-    elif len(_method) == 0:
+    elif "method" not in _config.keys():
         # not requesting help, but still no methodology
         internals._print_usage()
         sys.exit(1)
 
+    _files = _config.get("file", [])
+    _files.extend(_positionals)
     _data["data_raw"] = internals._get_raw_data(_files)
     implementation.cli_wrapper(**_data)
-
 
     sys.exit(0)
 

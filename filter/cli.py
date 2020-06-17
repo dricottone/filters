@@ -5,7 +5,7 @@ import re
 def main(arguments):
 	config=dict()
 	positional=[]
-	pattern=re.compile(r"(?:-(?:a|b|d|f|h|x|i|m|r|t)|--(?:alpha|beta|delta|file|help|initial|method|report|time))(?:=.*)?$")
+	pattern=re.compile(r"(?:-(?:a|b|d|f|h|x|i|m|r|t|v|V)|--(?:alpha|beta|delta|file|help|initial|method|report|time|version))(?:=.*)?$")
 	consuming,needing,wanting=None,0,0
 	attached_value=None
 	while len(arguments) and arguments[0]!="--":
@@ -94,6 +94,14 @@ def main(arguments):
 				else:
 					config["time"]=None
 					consuming,needing,wanting="time",1,1
+			elif option=="version":
+				if attached_value is not None:
+					message=(
+						'unexpected value while parsing "version"'
+						' (expected 0 values)'
+					)
+					raise ValueError(message) from None
+				config["version"]=True
 			elif option=="a":
 				if attached_value is not None:
 					config["alpha"]=attached_value
@@ -174,6 +182,22 @@ def main(arguments):
 				else:
 					config["time"]=None
 					consuming,needing,wanting="time",1,1
+			elif option=="v":
+				if attached_value is not None:
+					message=(
+						'unexpected value while parsing "version"'
+						' (expected 0 values)'
+					)
+					raise ValueError(message) from None
+				config["version"]=True
+			elif option=="V":
+				if attached_value is not None:
+					message=(
+						'unexpected value while parsing "version"'
+						' (expected 0 values)'
+					)
+					raise ValueError(message) from None
+				config["version"]=True
 		else:
 			positional.append(arguments.pop(0))
 	if needing>0:

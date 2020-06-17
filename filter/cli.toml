@@ -35,3 +35,7 @@ alternatives = ['r']
 number = 1
 alternatives = ['t']
 
+[version]
+number = 0
+alternatives = ['v', 'V']
+
