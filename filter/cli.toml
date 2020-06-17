@@ -1,0 +1,37 @@
+[alpha]
+number = 1
+alternatives = ['a']
+
+[beta]
+number = 1
+alternatives = ['b']
+
+[delta]
+number = 1
+alternatives = ['d']
+
+[file]
+minimum = 1
+maximum = 9
+alternatives = ['f']
+
+[help]
+number = 0
+alternatives = ['h', 'x']
+
+[initial]
+number = 1
+alternatives = ['i']
+
+[method]
+number = 1
+alternatives = ['m']
+
+[report]
+number = 0
+alternatives = ['r']
+
+[time]
+number = 1
+alternatives = ['t']
+

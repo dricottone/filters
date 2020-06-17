@@ -1,7 +1,9 @@
-A filtering script
+# filter
+
+Command line data filtering
 
 ```sh
-$ filter.py -m=ab data/weights -a=.4 -b=0 -i=160 -d=1 -r
+$ filter -m=ab data/weights -a=.4 -b=0 -i=160 -d=1 -r
 Testing on N=12
 Using alpha=0.4000, beta=0.0000
 Initial estimate of 160.0000, accelerating 1.0000 per time unit
