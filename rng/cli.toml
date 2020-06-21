@@ -1,0 +1,42 @@
+[delta]
+number = 1
+alternatives = ['d']
+
+[distribution]
+number = 1
+
+[help]
+number = 0
+alternatives = ['h', 'x']
+
+[initial]
+number = 1
+alternatives = ['i']
+
+[list-distributions]
+number = 0
+
+[mu]
+number = 1
+alternatives = ['m']
+
+[number]
+number = 1
+alternatives = ['n']
+
+[offset]
+number = 1
+alternatives = ['o']
+
+[report]
+number = 0
+alternatives = ['r']
+
+[sigma]
+number = 1
+alternatives = ['s']
+
+[version]
+number = 0
+alternatives = ['v', 'V']
+
