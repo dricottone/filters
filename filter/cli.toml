@@ -20,22 +20,30 @@ number = 0
 alternatives = ['h', 'x']
 
 [initial]
-number = 1
+minimum = 1
+maximum = 2
 alternatives = ['i']
 
-[method]
+[kernel]
+minimum = 1
+maximum = 9
+alternatives = ['k']
+
+[list-methodologies]
+number = 0
+
+[methodology]
 number = 1
-alternatives = ['m']
 
 [report]
 number = 0
 alternatives = ['r']
 
-[time]
+[variance]
 number = 1
-alternatives = ['t']
+alternatives = ['v']
 
 [version]
 number = 0
-alternatives = ['v', 'V']
+alternatives = ['V']
 

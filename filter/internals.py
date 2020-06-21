@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 import sys
-import random
-
 from typing import *
+
+VERSION = (1,0,1,)
 
 def _try_get_float(
     mapping: Dict,
@@ -13,6 +13,23 @@ def _try_get_float(
 ) -> Optional[float]:
     if key in mapping:
         return float(mapping[key])
+    else:
+        return default
+
+def _try_get_list_float(
+    mapping: Dict,
+    key: str,
+    *,
+    default: Optional[List[float]] = None,
+) -> Optional[List[float]]:
+    if key in mapping:
+        _list = list()
+        for value in mapping[key]:
+            try:
+                _list.append(float(value))
+            except:
+                _print_invalid_data(value)
+        return _list
     else:
         return default
 
@@ -57,30 +74,31 @@ def _get_raw_data(filenames: List[str]) -> List[float]:
 
     return raw_data
 
-def noise(data: List[float]) -> List[float]:
-    """
-    Introduce random noise (r in [-1,1]) to a set of data points.
-    """
-    def _noise_iter(data: List[float]) -> Iterator[float]:
-        for d in data:
-            yield d + random.uniform(-1,1)
-    return list(_noise_iter(data))
-
 def _print_help() -> None:
-    _msg = "Usage: filter -m=METHOD DATA\n"
+    _msg = "Usage: filter METHOD [OPTIONS] DATA\n"
     sys.stdout.write(_msg)
 
 def _print_version() -> None:
-    _msg = "gap 1.0.0\n"
+    _msg = "filter {0}\n".format(".".join(str(v) for v in VERSION))
+    sys.stdout.write(_msg)
+
+def _print_methodologies(*method: str) -> None:
+    _msg = "Valid methodologies: {0}\n".format(", ".join(method))
     sys.stdout.write(_msg)
 
 def _print_usage() -> None:
-    _msg = "Usage: filter -m=METHOD DATA\n"
-    sys.stderr.write(_msg)
+    _msg = (
+        "Usage: filter METHOD [OPTIONS] DATA",
+        "Try `filter --list-methodologies` and `filter METHOD --help`",
+    )
+    sys.stderr.write("\n".join(_msg) + "\n")
 
 def _print_invalid_methodology(method: str) -> None:
-    _msg = "{0}: Invalid methodology '{1}'\n".format(sys.argv[0], method)
-    sys.stderr.write(_msg)
+    _msg = (
+        "{0}: Invalid methodology '{1}'\n".format(sys.argv[0], method),
+        "Try `filter --list-methodologies`",
+    )
+    sys.stderr.write("\n".join(_msg) + "\n")
 
 def _print_invalid_file(filename: str) -> None:
     _msg = "{0}: Invalid file '{1}'\n".format(sys.argv[0], filename)

@@ -1,25 +1,50 @@
-# filter
+# filters
 
-Command line data filtering
+## Commands
+
+### filter
+
+```
+filter METHOD [OPTIONS]
+```
+
+Command line data filtering.
+
+Available `METHOD`s are: `ab` and `convolve`. Use `filter METHOD --help` to see available options.
+
+
+
+### rng
+
+```
+rng DISTRIBUTION [OPTIONS]
+```
+
+Command line data generation.
+
+Available `DISTRIBUTION`s are: `normal`, `uniform`, and `notrandom`. Use `rng DISTRIBUTION --help` to see available options.
+
+
+
+## Example
 
 ```sh
-$filter -m=ab data/weights -a=.4 -b=0 -i=160 -d=1 -r
+$ rng uniform --mu 100 --delta 5 --offset 10 \
+  | filter ab --report --delta 5 --initial 100
 Alpha-beta filter
-  α=0.4000, β=0.0000
-  Initial estimate: 160.0000 changing 1.0000 per time unit
-Actual:   Est.:
+  α=0.0500, β=0.0050
+  Initial estimate: 100.0000 changing 5.0000 per time unit
+Raw:      Est.:
 ========  ========
-158.0000  159.8000
-164.2000  162.1600
-160.3000  162.0160
-159.9000  161.7696
-162.1000  162.5018
-164.6000  163.9411
-169.6000  166.8046
-167.4000  167.6428
-166.4000  167.7457
-171.0000  169.6474
-171.2000  170.8684
-172.6000  172.1611
+109.8960  105.2448
+ 99.0558  109.7086
+119.8484  114.9356
+115.0693  119.6868
+119.0251  124.3752
+126.9214  129.1972
+127.7748  133.8095
+133.2530  138.4348
+145.2687  143.4037
+136.5438  147.6973
 ```
 

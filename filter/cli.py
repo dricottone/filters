@@ -5,7 +5,7 @@ import re
 def main(arguments):
 	config=dict()
 	positional=[]
-	pattern=re.compile(r"(?:-(?:a|b|d|f|h|x|i|m|r|t|v|V)|--(?:alpha|beta|delta|file|help|initial|method|report|time|version))(?:=.*)?$")
+	pattern=re.compile(r"(?:-(?:a|b|d|f|h|x|i|k|r|v|V)|--(?:alpha|beta|delta|file|help|initial|kernel|list-methodologies|methodology|report|variance|version))(?:=.*)?$")
 	consuming,needing,wanting=None,0,0
 	attached_value=None
 	while len(arguments) and arguments[0]!="--":
@@ -53,7 +53,7 @@ def main(arguments):
 					attached_value=None
 				else:
 					config["file"]=[]
-					consuming,needing,wanting="file",0,8
+					consuming,needing,wanting="file",1,9
 			elif option=="help":
 				if attached_value is not None:
 					message=(
@@ -64,20 +64,36 @@ def main(arguments):
 				config["help"]=True
 			elif option=="initial":
 				if attached_value is not None:
-					config["initial"]=attached_value
+					config["initial"]=[attached_value]
+					consuming,needing,wanting="initial",0,1
 					attached_value=None
-					consuming,needing,wanting=None,0,0
 				else:
-					config["initial"]=None
-					consuming,needing,wanting="initial",1,1
-			elif option=="method":
+					config["initial"]=[]
+					consuming,needing,wanting="initial",1,2
+			elif option=="kernel":
 				if attached_value is not None:
-					config["method"]=attached_value
+					config["kernel"]=[attached_value]
+					consuming,needing,wanting="kernel",0,8
+					attached_value=None
+				else:
+					config["kernel"]=[]
+					consuming,needing,wanting="kernel",1,9
+			elif option=="list-methodologies":
+				if attached_value is not None:
+					message=(
+						'unexpected value while parsing "list-methodologies"'
+						' (expected 0 values)'
+					)
+					raise ValueError(message) from None
+				config["list-methodologies"]=True
+			elif option=="methodology":
+				if attached_value is not None:
+					config["methodology"]=attached_value
 					attached_value=None
 					consuming,needing,wanting=None,0,0
 				else:
-					config["method"]=None
-					consuming,needing,wanting="method",1,1
+					config["methodology"]=None
+					consuming,needing,wanting="methodology",1,1
 			elif option=="report":
 				if attached_value is not None:
 					message=(
@@ -86,14 +102,14 @@ def main(arguments):
 					)
 					raise ValueError(message) from None
 				config["report"]=True
-			elif option=="time":
+			elif option=="variance":
 				if attached_value is not None:
-					config["time"]=attached_value
+					config["variance"]=attached_value
 					attached_value=None
 					consuming,needing,wanting=None,0,0
 				else:
-					config["time"]=None
-					consuming,needing,wanting="time",1,1
+					config["variance"]=None
+					consuming,needing,wanting="variance",1,1
 			elif option=="version":
 				if attached_value is not None:
 					message=(
@@ -133,7 +149,7 @@ def main(arguments):
 					attached_value=None
 				else:
 					config["file"]=[]
-					consuming,needing,wanting="file",0,8
+					consuming,needing,wanting="file",1,9
 			elif option=="h":
 				if attached_value is not None:
 					message=(
@@ -152,20 +168,20 @@ def main(arguments):
 				config["help"]=True
 			elif option=="i":
 				if attached_value is not None:
-					config["initial"]=attached_value
+					config["initial"]=[attached_value]
+					consuming,needing,wanting="initial",0,1
 					attached_value=None
-					consuming,needing,wanting=None,0,0
 				else:
-					config["initial"]=None
-					consuming,needing,wanting="initial",1,1
-			elif option=="m":
+					config["initial"]=[]
+					consuming,needing,wanting="initial",1,2
+			elif option=="k":
 				if attached_value is not None:
-					config["method"]=attached_value
+					config["kernel"]=[attached_value]
+					consuming,needing,wanting="kernel",0,8
 					attached_value=None
-					consuming,needing,wanting=None,0,0
 				else:
-					config["method"]=None
-					consuming,needing,wanting="method",1,1
+					config["kernel"]=[]
+					consuming,needing,wanting="kernel",1,9
 			elif option=="r":
 				if attached_value is not None:
 					message=(
@@ -174,22 +190,14 @@ def main(arguments):
 					)
 					raise ValueError(message) from None
 				config["report"]=True
-			elif option=="t":
+			elif option=="v":
 				if attached_value is not None:
-					config["time"]=attached_value
+					config["variance"]=attached_value
 					attached_value=None
 					consuming,needing,wanting=None,0,0
 				else:
-					config["time"]=None
-					consuming,needing,wanting="time",1,1
-			elif option=="v":
-				if attached_value is not None:
-					message=(
-						'unexpected value while parsing "version"'
-						' (expected 0 values)'
-					)
-					raise ValueError(message) from None
-				config["version"]=True
+					config["variance"]=None
+					consuming,needing,wanting="variance",1,1
 			elif option=="V":
 				if attached_value is not None:
 					message=(
