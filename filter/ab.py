@@ -10,7 +10,7 @@ Options:
   -i M N,          initial state; M is the estimate and N is the std. deviation
     --initial M N    [Note: std. deviation unused] [Default: 0 0]
 
-Currently assumed that acceleration is constant and that the time unit is 1.
+Currently assumed that acceleration is 0 and the time unit is 1.
 """
 
 __all__ = ['cli_wrapper', 'filter', 'report']

@@ -10,8 +10,8 @@ Options:
   -s, --sigma     initial std. deviation of state distribution [Default: 1]
   -v, --variance  variance of data measurements [Default: 1]
 
-Currently assumed that acceleration is constant and that velocity is non-
-variate.
+Currently assumed that acceleration is 0, velocity is non-variate, and the time
+unit is 1.
 """
 
 __all__ = ['cli_wrapper', 'filter', 'report']
@@ -116,6 +116,12 @@ def report_header(
     Appears as:
 
     ```
+    Kalman filter
+      Distribution of estimated initial state: N(<mu>,<sigma>)
+      Distribution of expected change per time unit: N(<mu>,<sigma>)
+      Variance of measurements: <variance>
+    Raw:      Est.:     Var.:
+    ========  ========  ========
     ```
 
     The estimates and variances then should be printed alongside the raw
@@ -123,6 +129,13 @@ def report_header(
     """
     _msg = (
         "Kalman filter",
+        "  Distribution of estimated initial state: N({0},{1}²)".format(
+            init_state_mu, init_state_sigma,
+        ),
+        "  Distribution of expected change per time unit: N({0},{1}²)".format(
+            init_velocity_mu, init_velocity_sigma,
+        ),
+        "  Variance of measurements: {0}".format(variance),
         "Raw:      Est.:     Var.:",
         "========  ========  ========",
     )

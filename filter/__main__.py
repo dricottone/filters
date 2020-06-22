@@ -12,7 +12,7 @@ def main():
         internals._print_version()
         sys.exit(0)
     elif "list-methodologies" in _config.keys():
-        internals._print_methodologies("ab", "convolve")
+        internals._print_methodologies("ab", "kalman", "convolve")
         sys.exit(0)
     elif "methodology" in _config.keys():
         _method = config.get("methodology", "")

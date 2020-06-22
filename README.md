@@ -10,7 +10,7 @@ filter METHOD [OPTIONS]
 
 Command line data filtering.
 
-Available `METHOD`s are: `ab` and `convolve`. Use `filter METHOD --help` to see available options.
+Available `METHOD`s are: `ab`, `kalman`, and `convolve`. Use `filter METHOD --help` to see available options.
 
 
 
@@ -25,6 +25,7 @@ Command line data generation.
 Available `DISTRIBUTION`s are: `normal`, `uniform`, and `notrandom`. Use `rng DISTRIBUTION --help` to see available options.
 
 
+----
 
 ## Example
 
@@ -47,4 +48,11 @@ Raw:      Est.:
 145.2687  143.4037
 136.5438  147.6973
 ```
+
+
+----
+
+## Licensing
+
+This software is distributed under the GPL license.
 

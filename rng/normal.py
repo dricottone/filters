@@ -48,6 +48,14 @@ def distribution(
     init_velocity: float,
     acceleration: Callable[[float], float],
 ) -> Iterator[float]:
+    """Generate random data.
+
+    Arguments:
+      init_mu        initial average of distribution
+      sigma          sigma of distribution
+      init_velocity  initial velocity of average per time unit
+      acceleration   function of v1 <- v0
+    """
     mu = init_mu
     velocity = init_velocity
     while True:
@@ -55,13 +63,13 @@ def distribution(
         mu += velocity
         velocity = acceleration(velocity)
 
-# use this in a report function later: μ±
 def report_header(
     init_mu: float,
     sigma: float,
     init_velocity: float,
     acceleration: Callable[[float], float],
 ) -> str:
+    """Draw a report header summarizing the distribution."""
     _msg = (
         "Normal distribution",
         "  μ={0:.4f}, σ={1:.4f}".format(init_mu, sigma),

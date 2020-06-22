@@ -41,6 +41,13 @@ def distribution(
     init_velocity: float,
     acceleration: Callable[[float], float],
 ) -> Iterator[float]:
+    """Generate non-random data.
+
+    Arguments:
+      init_state     initial value
+      init_velocity  initial velocity of state per time unit
+      acceleration   function of v1 <- v0
+    """
     state = init_state
     velocity = init_velocity
 
@@ -54,6 +61,7 @@ def report_header(
     init_velocity: float,
     acceleration: Callable[[float], float],
 ):
+    """Draw a report header summarizing the distribution."""
     _msg = (
         "Not random data",
         "  Initial value of {0:.4f}, changing {1:.4f} per time unit".format(

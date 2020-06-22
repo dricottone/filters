@@ -9,7 +9,7 @@ Options:
   -n, --number  number of random data points to generate [Default: 10]
   -o, --offset  distance from average to bounds of distribution [Default: 1]
 
-Currently assumed that sigma is constant over time.
+Currently assumed that offset is constant over time.
 """
 
 import sys
@@ -48,6 +48,14 @@ def distribution(
     init_velocity: float,
     acceleration: Callable[[float], float],
 ) -> Iterator[float]:
+    """Generate random data.
+
+    Arguments:
+      init_mu        initial average of distribution
+      offset         distance from average to distribution bounds
+      init_velocity  initial velocity of average per time unit
+      acceleration   function of v1 <- v0
+    """
     mu = init_mu
     velocity = init_velocity
     while True:
@@ -55,13 +63,13 @@ def distribution(
         mu += velocity
         velocity = acceleration(velocity)
 
-# use this in a report function later: μ±σ
 def report_header(
     init_mu: float,
     offset: float,
     init_velocity: float,
     acceleration: Callable[[float], float],
 ):
+    """Draw a report header summarizing the distribution."""
     _msg = (
         "Uniform distribution",
         "  μ={0:.4f}, [{1:.4f},{2:.4f}]".format(
