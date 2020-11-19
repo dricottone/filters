@@ -46,7 +46,7 @@ def _read_stdin() -> Iterator[float]:
     except KeyboardInterrupt:
         sys.stdout.write("\n")
 
-def _read_file(filename) -> Iterator[float]:
+def _read_file(filename: str) -> Iterator[float]:
     try:
         with open(filename, 'r') as f:
             for line in f.readlines():
