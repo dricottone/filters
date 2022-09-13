@@ -1,2 +1,0 @@
-setuptools>=47.1.1
-

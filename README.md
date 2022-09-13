@@ -1,8 +1,6 @@
 # filters
 
-## Commands
-
-### filter
+## Usage
 
 ```
 filter METHOD [OPTIONS]
@@ -12,10 +10,6 @@ Command line data filtering.
 
 Available `METHOD`s are: `ab`, `kalman`, and `convolve`. Use `filter METHOD --help` to see available options.
 
-
-
-### rng
-
 ```
 rng DISTRIBUTION [OPTIONS]
 ```
@@ -24,8 +18,6 @@ Command line data generation.
 
 Available `DISTRIBUTION`s are: `normal`, `uniform`, and `notrandom`. Use `rng DISTRIBUTION --help` to see available options.
 
-
-----
 
 ## Example
 
@@ -49,8 +41,6 @@ Raw:      Est.:
 136.5438  147.6973
 ```
 
-
-----
 
 ## Licensing
 
