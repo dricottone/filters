@@ -3,7 +3,7 @@
 import sys
 from typing import *
 
-VERSION = (1,0,1,)
+VERSION = (1,0,3,)
 
 def _try_get_float(
     mapping: Dict,

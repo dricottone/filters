@@ -1,4 +1,4 @@
-VERSION=1.0.2
+VERSION=1.0.3
 
 PY_COMPILE_BIN=python -m py_compile
 
@@ -11,7 +11,7 @@ UNITTEST_FILE_BIN=unittest --color
 UNITTEST_DIR_BIN=unittest --color --working-directory .
 
 #MYPY_BIN=python -m mypy
-MYPY_BIN=MYPY_CACHE_DIR=gap/__mypycache__ mypy
+MYPY_BIN=MYPY_CACHE_DIR=__mypycache__ mypy
 
 #PIPX_BIN=python -m pipx
 PIPX_BIN=pipx

@@ -15,7 +15,7 @@ def main():
         internals._print_methodologies("ab", "kalman", "convolve")
         sys.exit(0)
     elif "methodology" in _config.keys():
-        _method = config.get("methodology", "")
+        _method = _config.get("methodology", "")
     elif len(_positionals) > 0:
         _method = _positionals.pop(0)
     elif "help" in _config.keys():

@@ -9,7 +9,7 @@ packages = ["filter", "rng"]
 name = "filters"
 description = "Command line data filtering and generation"
 readme = "README.md"
-version = "1.0.2"
+version = "1.0.3"
 authors = [ { name = "Dominic Ricottone", email = "me@dominic-ricottone.com" } ]
 urls = { source = "git.dominic-ricottone.com/~dricottone/filters" }
 license = { file = "LICENSE.md" }

@@ -15,7 +15,7 @@ def main():
         internals._print_distributions("normal", "uniform", "notrandom")
         sys.exit(0)
     elif "distribution" in _config.keys():
-        _dist = config.get("distribution", "")
+        _dist = _config.get("distribution", "")
     elif len(_positionals) > 0:
         _dist = _positionals.pop(0)
     elif "help" in _config.keys():
